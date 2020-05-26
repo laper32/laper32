@@ -3,6 +3,8 @@
 
 2. Many functions comes from many projects, such as Zombie Plague, smlib, Zombie Reloaded, etc. If you want to use it to write your own plugins, be careful, to avoid the function what they have defined.
 
+3. CSGO First, that means, any source games expected CSGOmay not be supported!
+
 # II. Installation
 1. You can download it directly via 'clone or download', or using git-bash:
 ```
