@@ -21,6 +21,14 @@
 #include <cstrike>
 #endif
 
+#if !defined _ptah_included
+#include <ptah>
+#endif
+
+#if !defined _dhooks_included
+#include <dhooks>
+#endif
+
 #include <laper32/lstd.inc>
 #include <laper32/engine.inc>
 #include <laper32/math.inc>
