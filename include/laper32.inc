@@ -37,7 +37,10 @@
 #include <laper32/fileparser.inc>
 #include <laper32/tools.inc>
 #include <laper32/utils.inc>
+#include <laper32/text.inc>
 #include <laper32/playermgr.inc>
+#include <laper32/hint.inc>
+
 
 // Here is used for _ArmsFix_ Extension
 // Do not edit it unless you _EXACTLY_ know what you are doing!

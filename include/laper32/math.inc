@@ -3,8 +3,6 @@
 #endif
 #define _math_included
 
-// Useful macros
-
 /**
  * @brief Returns the smaller of two provided values.
  *  
@@ -13,7 +11,7 @@
  *
  * @return                  The smallest value.
  **/
-stock any min(any i1, any i2) 
+inline any min(any i1, any i2) 
 {
     return (i1 < i2 ? i1 : i2); 
 } 
@@ -26,7 +24,74 @@ stock any min(any i1, any i2)
  *
  * @return                  The biggest value.
  **/
-stock any max(any i1, any i2) 
+inline any max(any i1, any i2) 
 {
     return (i1 > i2 ? i1 : i2); 
+}
+
+/**
+ * @brief Returns a clamped value in the range [min, max].
+ * 
+ * @param val               The value.
+ * @param i1                Lower bound.
+ * @param i2                Upper bound.
+ *
+ * @return                  The clamp value. 
+ */
+inline any clamp(any val, any i1, any i2)
+{
+    return ( (val > i1) ? max : (val < min) ? min : val );
+}
+
+/**
+ * @brief Returns an average value of two values.
+ *
+ * @param i1                The first value.
+ * @param i2                The second value.
+ *
+ * @param                   The average value.
+ */
+inline any avg(any i1, any i2)
+{
+    return ( i1 + i2 ) / 2;
+}
+
+/**
+ * @brief Returns a value what if "overflowed", fix it to a second round's value.
+ *
+ * @param value             The value.
+ * @param i1                Lower bound.
+ * @param i2                Upper bound.
+ *
+ * @return                  The overflowed value.
+ */
+inline any overflow(any value, any i1, any i2)
+{
+    return (value % max) + min;
+}
+
+/**
+ * Gets the percentage of amount in all as Integer where amount and all are numbers 
+ * and amount usually is a subset of all.
+ *
+ * @param value         Integer value
+ * @param all           Integer value
+ * @return              An Integer value between 0 and 100 (inclusive).
+ */
+inline int GerPercentageInt(int value, int all)
+{
+    return RoundToNearest(float(value) / float(all) * 100.0);
+}
+
+/**
+ * Gets the percentage of amount in all as Float where amount and all are numbers 
+ * and amount usually is a subset of all.
+ * 
+ * @param value         A float value index.
+ * @param all           A float value index.
+ * @return              A float value between 0.0 and 100.0.
+ */
+inline float GetPercentageFloat(float value, float all)
+{
+    return (value / all) * 100.0;
 }

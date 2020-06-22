@@ -27,6 +27,33 @@
 #define MAX_FLOAT               2147483647.0
 #define MAX_INT                 2147483647
 #define hasLength(%0)           (%0[0] != NULL_STRING[0]) 
+
+#define TEXT_COLOR_DEFAILT              "\x01"
+#define TEXT_COLOR_NORMAL               "\x01"
+#define TEXT_COLOR_WHITE                "\x01"
+
+#define TEXT_COLOR_DARKRED              "\x02"
+#define TEXT_COLOR_PINK                 "\x03"
+#define TEXT_COLOR_GREEN                "\x04"
+
+#define TEXT_COLOR_LIME                 "\x05"
+#define TEXT_COLOR_YELLOW               "\x05"
+
+#define TEXT_COLOR_LIGHTGREEN           "\x06"
+
+#define TEXT_COLOR_LIGHTRED             "\x07"
+#define TEXT_COLOR_RED                  "\x07"
+
+#define TEXT_COLOR_GREY                 "\x08"
+#define TEXT_COLOR_GRAY                 "\x08"
+
+#define TEXT_COLOR_OLIVE                "\x09"
+#define TEXT_COLOR_ORANGE               "\x10"
+#define TEXT_COLOR_SILVER               "\x0A"
+#define TEXT_COLOR_LIGHTBLUE            "\x0B"
+#define TEXT_COLOR_BLUE                 "\x0C"
+#define TEXT_COLOR_PURPLE               "\x0E"
+#define TEXT_COLOR_DARKORANGE           "\x0F"
 // === END ===
 
 /**
