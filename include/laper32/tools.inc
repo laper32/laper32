@@ -641,3 +641,316 @@ inline void ToolsSetParent(int entity, int parent)
     // Sets parent on the entity
     SetEntPropEnt(entity, Prop_Data, "m_pParent", parent);
 }
+
+/**
+ * @brief Gets the collision group on a client.
+ *
+ * @param client            The client index.
+ * @return                  The collision group on the client.
+ **/
+inline int ToolsGetCollisionGroup(int client)
+{
+    return GetEntProp(client, Prop_Data, "m_CollisionGroup");
+}
+
+/**
+ * @brief Sets the collision group on a client.
+ *
+ * @param client            The client index.
+ * @param collisionGroup    The group flag.
+ **/
+inline void ToolsSetCollisionGroup(int client, int collisionGroup)
+{
+    SetEntProp(client, Prop_Data, "m_CollisionGroup", collisionGroup);
+}
+
+/**
+ * @brief Checks if a player is currently stuck within another player.
+ *
+ * @param client     1      The first client index.
+ * @param client     2      The second client index.
+ * @return                  True if they are stuck together, false if not.
+ **/
+inline bool ToolsIsModelBoxColliding(int clientIndex1, int clientIndex2)
+{
+    // Initialize vector variables
+    float client1modelbox[BoxBound][3];
+    float client2modelbox[BoxBound][3];
+    
+    // Build model boxes for each client
+    ToolsBuildModelBox(clientIndex1, client1modelbox, DEFAULT_HULL_WIDTH);
+    ToolsBuildModelBox(clientIndex2, client2modelbox, DEFAULT_HULL_WIDTH);
+    
+    // Compare x values
+    float max1x = ToolsGetBoxMaxBoundary(0, client1modelbox);
+    float max2x = ToolsGetBoxMaxBoundary(0, client2modelbox);
+    float min1x = ToolsGetBoxMaxBoundary(0, client1modelbox, true);
+    float min2x = ToolsGetBoxMaxBoundary(0, client2modelbox, true);
+    
+    if (max1x < min2x || min1x > max2x)
+    {
+        return false;
+    }
+    
+    // Compare y values
+    float max1y = ToolsGetBoxMaxBoundary(1, client1modelbox);
+    float max2y = ToolsGetBoxMaxBoundary(1, client2modelbox);
+    float min1y = ToolsGetBoxMaxBoundary(1, client1modelbox, true);
+    float min2y = ToolsGetBoxMaxBoundary(1, client2modelbox, true);
+    
+    if (max1y < min2y || min1y > max2y)
+    {
+        return false;
+    }
+    
+    // Compare z values
+    float max1z = ToolsGetBoxMaxBoundary(2, client1modelbox);
+    float max2z = ToolsGetBoxMaxBoundary(2, client2modelbox);
+    float min1z = ToolsGetBoxMaxBoundary(2, client1modelbox, true);
+    float min2z = ToolsGetBoxMaxBoundary(2, client2modelbox, true);
+    
+    if (max1z < min2z || min1z > max2z)
+    {
+        return false;
+    }
+    
+    // They are intersecting
+    return true;
+}
+
+/**
+ * @brief Used to iterate all the clients collision within a sphere.
+ * 
+ * @param it                The iterator.
+ * @param vPosition         The sphere origin.
+ * @param flRadius          The sphere radius.
+ **/
+inline int ToolsFindPlayerInSphere(int &it, float vPosition[3], float flRadius)
+{
+    // Initialize vector variables
+    float clientmodelbox[BoxBound][3];
+
+    // i = client index
+    for (int i = it; i <= MaxClients; i++)
+    {
+        // Validate client
+        if (IsPlayerExist(i))
+        {
+            // Build model boxes for client
+            ToolsBuildModelBox(i, clientmodelbox, DEFAULT_HULL_WIDTH);
+
+            // Validate collision
+            if (ToolsIsBoxIntersectingSphere(clientmodelbox, vPosition, flRadius))
+            { 
+                // Move iterator
+                it = i + 1;
+        
+                // Return index
+                return i;
+            }
+        }
+    }
+    
+    // Client doesn't exist
+    return -1;
+}
+
+/**
+ * @brief Returns true if there's an intersection between box and sphere.
+ * 
+ * @param flBoundaries      Array with 'BoxBound' for indexes to return bounds into.
+ * @param vPosition         The sphere center.
+ * @param flRadius          The sphere radius.
+ * 
+ * @return                  True or false. 
+ *
+ * @link https://github.com/erich666/GraphicsGems/blob/master/gems/BoxSphere.c
+ */
+inline bool ToolsIsBoxIntersectingSphere(float flBoundaries[BoxBound][3], float vPosition[3], float flRadius)
+{
+    // See graphics gems, box-sphere intersection
+    float flDelta; float flDistance;
+
+    /// Unrolled the loop.. this is a big cycle stealer...
+
+    // Compare x values
+    float maxBx = ToolsGetBoxMaxBoundary(0, flBoundaries);
+    float minBx = ToolsGetBoxMaxBoundary(0, flBoundaries, true);  
+
+    if (vPosition[0] < minBx) 
+    {
+        flDelta = vPosition[0] - minBx;
+        flDistance += flDelta * flDelta;
+    }
+    else if (vPosition[0] > maxBx) 
+    {   
+        flDelta = vPosition[0] - maxBx;
+        flDistance += flDelta * flDelta;   
+    }
+    
+    // Compare y values
+    float maxBy = ToolsGetBoxMaxBoundary(1, flBoundaries);
+    float minBy = ToolsGetBoxMaxBoundary(1, flBoundaries, true);  
+    
+    if (vPosition[1] < minBy) 
+    {
+        flDelta = vPosition[1] - minBy;
+        flDistance += flDelta * flDelta;
+    }
+    else if (vPosition[1] > maxBy) 
+    {   
+        flDelta = vPosition[1] - maxBy;
+        flDistance += flDelta * flDelta;   
+    }
+    
+    // Compare z values
+    float maxBz = ToolsGetBoxMaxBoundary(2, flBoundaries);
+    float minBz = ToolsGetBoxMaxBoundary(2, flBoundaries, true); 
+    
+    if (vPosition[2] < minBz) 
+    {
+        flDelta = vPosition[2] - minBz;
+        flDistance += flDelta * flDelta;
+    }
+    else if (vPosition[2] > maxBz) 
+    {   
+        flDelta = vPosition[2] - maxBz;
+        flDistance += flDelta * flDelta;   
+    }
+
+    // Return true on the collision
+    return flDistance <= (flRadius * flRadius);
+}
+
+/**
+ * @brief Gets the max/min value of a 3D box on any axis.
+ * 
+ * @param iAxis             The axis to check.
+ * @param flBoundaries      The boundaries to check.
+ * @param bMin              Return the min value instead.
+ **/
+inline float ToolsGetBoxMaxBoundary(int iAxis, float flBoundaries[BoxBound][3], bool bMin = false)
+{
+    // Creates 'outlier' with initial value of first boundary
+    float flOutlier = flBoundaries[0][iAxis];
+    
+    // x = Boundary index. (Start at 1 because we initialized 'outlier' with the 0 index value)
+    int iSize = sizeof(flBoundaries);
+    for (int x = 1; x < iSize; x++)
+    {
+        if (!bMin && flBoundaries[x][iAxis] > flOutlier)
+        {
+            flOutlier = flBoundaries[x][iAxis];
+        }
+        else if (bMin && flBoundaries[x][iAxis] < flOutlier)
+        {
+            flOutlier = flBoundaries[x][iAxis];
+        }
+    }
+    
+    // Return value
+    return flOutlier;
+}
+
+/**
+ * @brief Build the model box by finding all vertices.
+ * 
+ * @param client            The client index.
+ * @param flBoundaries      Array with 'BoxBounds' for indexes to return bounds into.
+ * @param width             The width of the model box.
+ **/
+inline void ToolsBuildModelBox(int client, float flBoundaries[BoxBound][3], float flWidth)
+{
+    // Initialize vector variables
+    static float vTwistAngle[3]; static float vCornerAngle[3];
+    static float vOriginLoc[3]; static float vSideLoc[3]; static float vFinalLoc[4][3];
+
+    // Gets needed vector info
+    ToolsGetAbsOrigin(client, vOriginLoc);
+
+    // Sets pitch to 0
+    vTwistAngle[1] = 90.0;
+    vCornerAngle[1] = 0.0;
+
+    // i = side index
+    for (int x = 0; x < 4; x++)
+    {
+        // Jump to point on player left side.
+        ToolsJumpToPoint(vOriginLoc, vTwistAngle, flWidth / 2, vSideLoc);
+
+        // From this point, jump to the corner, which would be half the width from the middle of a side
+        ToolsJumpToPoint(vSideLoc, vCornerAngle, flWidth / 2, vFinalLoc[x]);
+
+        // Twist 90 degrees to find next side/corner
+        vTwistAngle[1] += 90.0;
+        vCornerAngle[1] += 90.0;
+
+        // Fix angles
+        if (vTwistAngle[1] > 180.0)
+        {
+            vTwistAngle[1] -= 360.0;
+        }
+
+        if (vCornerAngle[1] > 180.0)
+        {
+            vCornerAngle[1] -= 360.0;
+        }
+    }
+
+    // Copy all horizontal model box data to array
+    flBoundaries[BoxBound_FUR][0] = vFinalLoc[3][0];
+    flBoundaries[BoxBound_FUR][1] = vFinalLoc[3][1];
+    flBoundaries[BoxBound_FUL][0] = vFinalLoc[0][0];
+    flBoundaries[BoxBound_FUL][1] = vFinalLoc[0][1];
+    flBoundaries[BoxBound_FDR][0] = vFinalLoc[3][0];
+    flBoundaries[BoxBound_FDR][1] = vFinalLoc[3][1];
+    flBoundaries[BoxBound_FDL][0] = vFinalLoc[0][0];
+    flBoundaries[BoxBound_FDL][1] = vFinalLoc[0][1];
+    flBoundaries[BoxBound_BUR][0] = vFinalLoc[2][0];
+    flBoundaries[BoxBound_BUR][1] = vFinalLoc[2][1];
+    flBoundaries[BoxBound_BUL][0] = vFinalLoc[1][0];
+    flBoundaries[BoxBound_BUL][1] = vFinalLoc[1][1];
+    flBoundaries[BoxBound_BDR][0] = vFinalLoc[2][0];
+    flBoundaries[BoxBound_BDR][1] = vFinalLoc[2][1];
+    flBoundaries[BoxBound_BDL][0] = vFinalLoc[1][0];
+    flBoundaries[BoxBound_BDL][1] = vFinalLoc[1][1];
+
+    // Sets Z bounds
+    static float vEyeLoc[3];
+    GetClientEyePosition(client, vEyeLoc);
+
+    flBoundaries[BoxBound_FUR][2] = vEyeLoc[2];
+    flBoundaries[BoxBound_FUL][2] = vEyeLoc[2];
+    flBoundaries[BoxBound_FDR][2] = vOriginLoc[2] + 15.0;
+    flBoundaries[BoxBound_FDL][2] = vOriginLoc[2] + 15.0;
+    flBoundaries[BoxBound_BUR][2] = vEyeLoc[2];
+    flBoundaries[BoxBound_BUL][2] = vEyeLoc[2];
+    flBoundaries[BoxBound_BDR][2] = vOriginLoc[2] + 15.0;
+    flBoundaries[BoxBound_BDL][2] = vOriginLoc[2] + 15.0;
+}
+
+/**
+ * @brief Jumps from a point to another based off angle and distance.
+ * 
+ * @param flVector          Point to jump from.
+ * @param flAngle           Angle to base jump off of.
+ * @param flDistance        Distance to jump
+ * @param flResult          Resultant point.
+ **/
+inline void ToolsJumpToPoint(float vVector[3], float vAngle[3], float flDistance, float vResult[3])
+{
+    // Initialize vector variable
+    static float vViewLoc[3];
+    
+    // Turn client angle, into a vector
+    GetAngleVectors(vAngle, vViewLoc, NULL_VECTOR, NULL_VECTOR);
+    
+    // Normalize vector
+    NormalizeVector(vViewLoc, vViewLoc);
+    
+    // Scale to the given distance
+    ScaleVector(vViewLoc, flDistance);
+    
+    // Add the vectors together
+    AddVectors(vVector, vViewLoc, vResult);
+}

@@ -16,6 +16,8 @@
 #define CONSOLE_LINE_LENGTH     1024
 #define FILE_LINE_LENGTH        2048
 
+#define DEFAULT_HULL_WIDTH      32.0
+
 #define TEAM_NONE               0
 #define TEAM_SPECTATOR          1    /**< Spectators        */
 
@@ -529,3 +531,30 @@ enum RenderingColorType
 /**
  * @endsection
  **/ 
+
+/**
+ * @section List of components that make up the model rectangular boundaries.
+ * 
+ * F = Front
+ * B = Back
+ * L = Left
+ * R = Right
+ * U = Upper
+ * D = Down
+ **/
+enum /*BoxBound*/
+{
+    BoxBound_FUR,       /** Front upper right */
+    BoxBound_FUL,       /** etc.. */
+    BoxBound_FDR,
+    BoxBound_FDL,
+    BoxBound_BUR,
+    BoxBound_BUL,
+    BoxBound_BDR,
+    BoxBound_BDL,
+    
+    BoxBound
+};
+/**
+ * @endsection
+ **/
