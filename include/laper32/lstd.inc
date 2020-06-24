@@ -20,6 +20,11 @@
 
 #define TEAM_NONE               0
 #define TEAM_SPECTATOR          1    /**< Spectators        */
+#define TEAM_T                  2    /**< Terrorist         */
+#define TEAM_CT                 3    /**< Counter-Terrorist */
+
+#define TEAM_ZOMBIE             2    /**< Zombies           */
+#define TEAM_HUMAN              3    /**< Humans            */
 
 #define SPECMODE_NONE           0
 #define SPECMODE_FIRSTPERSON    4

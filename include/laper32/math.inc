@@ -92,6 +92,21 @@ inline any overflow(any value, any i1, any i2)
     return (value % max) + min;
 }
 
+inline float vec3norm(float vec[3])
+{
+    return sqrt( Pow(vec[0], 2.0) + Pow(vec[1], 2.0) + Pow(vec[2], 2.0) );
+}
+
+/**
+ * @brief Returns the square root of the input value, equivalent to floatpower(value, 0.5).
+ * 
+ * @param val               The input value.
+ */
+inline float sqrt(float val)
+{
+    return SquareRoot(val);
+}
+
 /**
  * Gets the percentage of amount in all as Integer where amount and all are numbers 
  * and amount usually is a subset of all.

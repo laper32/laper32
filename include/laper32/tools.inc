@@ -52,6 +52,19 @@ inline void ToolsGetVelocity(int entity, float vVelocity[3])
 }
 
 /**
+ * @brief Gets the speed of a entity.
+ *
+ * @param entity            The entity index.
+ */
+inline float ToolsGetSpeed(int entity)
+{
+    static float vVeclocity[3];
+    ToolsGetVelocity(entity, vVeclocity);
+
+    return vec3norm(vVeclocity);
+}
+
+/**
  * @brief Gets the abs origin of a entity.
  *
  * @param entity            The entity index.

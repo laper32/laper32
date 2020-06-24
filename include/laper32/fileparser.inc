@@ -30,7 +30,7 @@ inline int fileparser_PrecacheModel(char[] sModel)
         }
         
         // Return error
-        SetFailState("[fileparser] fileparser_PrecacheModel: Invalid model path. File not found: \"%s\"", sModel);
+        SetFailState("[Fileparser] fileparser_PrecacheModel: Invalid model path. File not found: \"%s\"", sModel);
         return 0;
     }
     
@@ -73,7 +73,7 @@ inline int fileparser_PrecacheWeapon(char[] sModel)
         }
 
         // Return error
-        SetFailState("[FileParser] fileparser_PrecacheWeapon: Invalid model path. File not found: \"%s\"", sModel);
+        SetFailState("[Fileparser] fileparser_PrecacheWeapon: Invalid model path. File not found: \"%s\"", sModel);
         return 0;
     }
 
@@ -119,7 +119,7 @@ inline int fileparser_PrecacheParticle(char[] sFileName)
         }
 
         // Return error
-        SetFailState("[FileParser] fileparser_PrecacheParticle: Invalid model path. File not found: \"%s\"", sFileName);
+        SetFailState("[Fileparser] fileparser_PrecacheParticle: Invalid model path. File not found: \"%s\"", sFileName);
         return 0;
     }
 
@@ -184,7 +184,7 @@ inline bool fileparser_PrecacheSounds(char[] sFileName)
     // If model path is don't have format, then log, and stop
     if (iFormat == -1)
     {
-        SetFailState("[FileParser] fileparser_PrecacheSounds: Missing file format: %s", sFileName);
+        SetFailState("[Fileparser] fileparser_PrecacheSounds: Missing file format: %s", sFileName);
         return false;
     }
     
@@ -211,7 +211,7 @@ inline bool fileparser_PrecacheSounds(char[] sFileName)
         if (hFile == null)
         {
             DeleteFile(sPath);
-            SetFailState("[FileParser] fileparser_PrecacheSounds: Error opening file: \"%s\"", sFileName);
+            SetFailState("[Fileparser] fileparser_PrecacheSounds: Error opening file: \"%s\"", sFileName);
             return false;
         }
         
@@ -313,7 +313,7 @@ inline bool fileparser_PrecacheMaterials(char[] sFileName)
     // If model path is don't have format, then log, and stop
     if (iFormat == -1)
     {
-        SetFailState("[FileParser] fileparser_PrecacheMaterials: Missing file format: %s", sFileName);
+        SetFailState("[Fileparser] fileparser_PrecacheMaterials: Missing file format: %s", sFileName);
         return false;
     }
     
@@ -340,7 +340,7 @@ inline bool fileparser_PrecacheMaterials(char[] sFileName)
         if (hFile == null)
         {
             DeleteFile(sPath);
-            SetFailState("[FileParser] fileparser_PrecacheMaterials: Error opening file: \"%s\"", sFileName);
+            SetFailState("[Fileparser] fileparser_PrecacheMaterials: Error opening file: \"%s\"", sFileName);
             return false;
         }
         
@@ -415,7 +415,7 @@ inline bool fileparser_PrecacheMaterials(char[] sFileName)
                 // If doesn't exist stop
                 if (hDirectory == null)
                 {
-                    LogError("[FileParser] fileparser_PrecacheMaterials Error opening folder: \"%s\"", sPath);
+                    LogError("[Fileparser] fileparser_PrecacheMaterials Error opening folder: \"%s\"", sPath);
                     continue;
                 }
 
@@ -529,7 +529,7 @@ inline bool fileparser_PrecacheEffects(char[] sFileName)
     // If model path is don't have format, then log, and stop
     if (iFormat == -1)
     {
-        SetFailState("[FileParser] fileparser_PrecacheEffects: Missing file format: %s", sFileName);
+        SetFailState("[Fileparser] fileparser_PrecacheEffects: Missing file format: %s", sFileName);
         return false;
     }
 
@@ -569,7 +569,7 @@ inline bool fileparser_PrecacheEffects(char[] sFileName)
         if (hFile == null)
         {
             DeleteFile(sPath);
-            SetFailState("[FileParser] fileparser_PrecacheEffects: Error opening file: \"%s\"", sFileName);
+            SetFailState("[Fileparser] fileparser_PrecacheEffects: Error opening file: \"%s\"", sFileName);
             return false;
         }
 
@@ -680,7 +680,7 @@ inline bool fileparser_PrecacheTextures(char[] sFileName, char[] sPath)
         }
 
         // Return error
-        LogError("[FileParser] fileparser_PrecacheTextures: Invalid material path. File not found: \"%s\" in \"%s\"", sTexture, sFileName[iSlash]);
+        LogError("[Fileparser] fileparser_PrecacheTextures: Invalid material path. File not found: \"%s\" in \"%s\"", sTexture, sFileName[iSlash]);
         return false;
     }
 
@@ -698,7 +698,7 @@ inline bool fileparser_PrecacheTextures(char[] sFileName, char[] sPath)
     // If doesn't exist stop
     if (hFile == null)
     {
-        SetFailState("[FileParser] fileparser_PrecacheTextures: Error opening file: \"%s\"", sTexture);
+        SetFailState("[Fileparser] fileparser_PrecacheTextures: Error opening file: \"%s\"", sTexture);
         return false;
     }
     
@@ -728,7 +728,7 @@ inline bool fileparser_PrecacheTextures(char[] sFileName, char[] sPath)
                 int iQuotes = CountCharInString(sTexture[iShift], '"');
                 if (iQuotes != 2)
                 {
-                    LogError("[FileParser] fileparser_PrecacheTextures: Error with parsing \"%s\" in file: \"%s\"", sTypes[x], sPath);
+                    LogError("[Fileparser] fileparser_PrecacheTextures: Error with parsing \"%s\" in file: \"%s\"", sTypes[x], sPath);
                 }
                 else
                 {
@@ -764,7 +764,7 @@ inline bool fileparser_PrecacheTextures(char[] sFileName, char[] sPath)
                         // Validate non default textures
                         if (!FileExists(sTexture, true))
                         {
-                            LogError("[FileParser] fileparser_PrecacheTextures: Invalid texture path. File not found: \"%s\" in \"%s\"", sTexture, sFileName[iSlash]);
+                            LogError("[Fileparser] fileparser_PrecacheTextures: Invalid texture path. File not found: \"%s\" in \"%s\"", sTexture, sFileName[iSlash]);
                         }
                    }
                 }
@@ -797,7 +797,7 @@ inline bool fileparser_PrecacheSoundsFormat(char[] sPath)
         }
 
         // Return error
-        LogError("[FileParser] fileparser_PrecacheSoundsFormat: Invalid sound path. File not found: \"%s\"", sPath);
+        LogError("[Fileparser] fileparser_PrecacheSoundsFormat: Invalid sound path. File not found: \"%s\"", sPath);
         return false;
     }
     
@@ -832,7 +832,7 @@ inline bool fileparser_PrecacheSoundsFormat(char[] sPath)
     }
     else
     {
-        LogError("[FileParser] fileparser_PrecacheSoundsFormat: Invalid sound path. File not found: \"%s\"", sPath);
+        LogError("[Fileparser] fileparser_PrecacheSoundsFormat: Invalid sound path. File not found: \"%s\"", sPath);
         return false;
     }
     

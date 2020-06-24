@@ -110,3 +110,48 @@ inline bool IsPlayerInGroup(int client, char[] sGroup)
     // No groups or no match
     return false;
 }
+
+inline int GetPlayingCount()
+{
+    // Initialize index
+    int iPlaying;
+
+    // i = client index
+    for (int i = 1; i <= MaxClients; i++)
+    {
+        // Validate client
+        if (IsPlayerExist(i, false))
+        {
+            // Increment amount
+            iPlaying++;
+        }
+    }
+    
+    // Return amount
+    return iPlaying;
+}
+
+/**
+ * @brief Gets amount of total alive players.
+ *
+ * @return                  The amount of total alive players.
+ **/
+inline int GetAliveCount()
+{
+    // Initialize index
+    int iAlive;
+
+    // i = client index
+    for (int i = 1; i <= MaxClients; i++)
+    {
+        // Validate client
+        if (IsPlayerExist(i))
+        {
+            // Increment amount
+            iAlive++;
+        }
+    }
+    
+    // Return amount
+    return iAlive;
+}

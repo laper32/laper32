@@ -1,3 +1,13 @@
+/**
+ * Provides functions for parsing single line strings, and parameters in key = "value" format.
+ *
+ * Example:
+ *			key1 = "value1"
+ *			key2 = "value2", "value3"
+ *			key3 = "value4", "value5", "value6"
+ *			key4 = "value7"
+ */
+
 #if defined _paramparser_included
 #endinput
 #endif

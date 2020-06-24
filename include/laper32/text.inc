@@ -169,7 +169,7 @@ inline void LPrintToHintText(int client, any ...)
  *
  * @param ...               Formatting parameters.
  **/
-stock void LPrintHintTextAll(any ...)
+inline void LPrintHintTextAll(any ...)
 {
     // i = client index
     for (int i = 1; i <= MaxClients; i++)
@@ -321,7 +321,7 @@ inline void LPrintToChatSingleLine(int client, any ...)
  *
  * @param ...                  Formatting parameters.
  **/
-stock void LPrintToChatAllSingleLine(any ...)
+inline void LPrintToChatAllSingleLine(any ...)
 {
     // i = client index
     for (int i = 1; i <= MaxClients; i++)
@@ -356,7 +356,7 @@ stock void LPrintToChatAllSingleLine(any ...)
  * 
  * @param ...               Translation formatting parameters.  
  **/
-stock void LPrintToServer(any:...)
+inline void LPrintToServer(any:...)
 {
     // Sets translation target
     SetGlobalTransTarget(LANG_SERVER);
@@ -378,7 +378,7 @@ stock void LPrintToServer(any:...)
  * @param client            The client index.
  * @param ...               Formatting parameters. 
  **/
-stock void LReplyToCommand(int client, any ...)
+inline void LReplyToCommand(int client, any ...)
 {
     // Validate client
     if (!IsPlayerExist(client, false))

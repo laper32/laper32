@@ -15,7 +15,7 @@ inline void InitGameConfOffset(GameData gameConf, int &iOffset, char[] sKey)
     // Validate offset
     if ((iOffset = gameConf.GetOffset(sKey)) == -1)
     {
-        SetFailState("[GameData Validation] InitGameConfOffset: Failed to get offset: \"%s\"", sKey);
+        SetFailState("[Engine] [GameData Validation] InitGameConfOffset: Failed to get offset: \"%s\"", sKey);
     }
 }
 
@@ -31,7 +31,7 @@ inline void InitGameConfAddress(GameData gameConf, Address &pAddress, char[] sKe
     // Validate address
     if ((pAddress = gameConf.GetAddress(sKey)) == Address_Null)
     {
-        SetFailState("[GameData Validation] InitGameConfAddress: Failed to get address: \"%s\"", sKey);
+        SetFailState("[Engine] [GameData Validation] InitGameConfAddress: Failed to get address: \"%s\"", sKey);
     }
 }
 
@@ -48,7 +48,7 @@ inline void InitGameConfKey(GameData gameConf, char[] sKey, char[] sIdentifier, 
     // Validate key
     if (!gameConf.GetKeyValue(sKey, sIdentifier, iMaxLen)) 
     {
-        SetFailState("[GameData Validation] InitGameConfKey: Failed to get key: \"%s\"", sKey);
+        SetFailState("[Engine] [GameData Validation] InitGameConfKey: Failed to get key: \"%s\"", sKey);
     }
 }
 
@@ -64,7 +64,7 @@ inline void InitSendPropOffset(int &iOffset, char[] sClass, char[] sProp)
     // Validate prop
     if ((iOffset = FindSendPropInfo(sClass, sProp)) < 1)
     {
-        SetFailState("[GameData Validation] InitSendPropOffset: Failed to find send prop: \"%s\"", sProp);
+        SetFailState("[Engine] [GameData Validation] InitSendPropOffset: Failed to find send prop: \"%s\"", sProp);
     }
 }
 
@@ -80,7 +80,7 @@ inline void InitDataPropOffset(int &iOffset, int entity, char[] sProp)
     // Validate prop
     if ((iOffset = FindDataMapInfo(entity, sProp)) < 1)
     {
-        SetFailState("[GameData Validation] InitDataPropOffset: Failed to find data prop: \"%s\"", sProp);
+        SetFailState("[Engine] [GameData Validation] InitDataPropOffset: Failed to find data prop: \"%s\"", sProp);
     }
 }
 
@@ -112,7 +112,7 @@ inline Address CreateEngineInterface(GameData gameConf, char[] sKey, Address pAd
         // Validate call
         if ((hInterface = EndPrepSDKCall()) == null)
         {
-            SetFailState("[GameData Validation] CreateEngineInterface: Failed to load SDK call \"CreateInterface\". Update signature in \"%s\"", GAMEDATA_CONFIG);
+            SetFailState("[Engine] [GameData Validation] CreateEngineInterface: Failed to load SDK call \"CreateInterface\". Update signature in \"%s\"", GAMEDATA_CONFIG);
             return Address_Null;
         }
     }
@@ -125,7 +125,7 @@ inline Address CreateEngineInterface(GameData gameConf, char[] sKey, Address pAd
     Address pInterface = SDKCall(hInterface, sInterface, pAddress);
     if (pInterface == Address_Null) 
     {
-        SetFailState("[GameData Validation] CreateEngineInterface: Failed to get pointer to interface %s(\"%s\")", sKey, sInterface);
+        SetFailState("[Engine] [GameData Validation] CreateEngineInterface: Failed to get pointer to interface %s(\"%s\")", sKey, sInterface);
         return Address_Null;
     }
 
