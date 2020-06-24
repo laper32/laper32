@@ -4,6 +4,28 @@
 #define _math_included
 
 /**
+ * @brief Returns the positive integer of the value.
+ *
+ * @param i1                The input value.
+ * @return                  The positive integer.
+ */
+inline int abs(int i1)
+{
+    return (i1 ^ (i1 >> 31)) - (i1 >> 31);
+}
+
+/**
+ * @brief Returns the positive float of the value.
+ *
+ * @param i1                The input value.
+ * @return                  The positive float.
+ */
+inline float fabs(float i1)
+{
+    return FloatAbs(i1);
+}
+
+/**
  * @brief Returns the smaller of two provided values.
  *  
  * @param i1                The first value.
