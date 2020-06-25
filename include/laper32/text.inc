@@ -59,12 +59,12 @@ inline void FormatString(char[] sText, int iMaxLen, bool bColor = true)
     if(bColor)
     {
         //Format prefix onto the string
-        Format(sText, iMaxLen, " @green%s @default%s", Prefix, sText);
+        Format(sText, iMaxLen, " @green%t @default%s", "Prefix", sText);
         ColorString(sText, iMaxLen);
     }
     else
     {
-        Format(sText, iMaxLen, "%s %s", prefix, sText);
+        Format(sText, iMaxLen, "%s %s", "Prefix", sText);
     }
 }
 
@@ -147,7 +147,7 @@ inline void LPrintToConsoleAll(bool bServer, any ...)
  * @param client            The client index.
  * @param ...               Formatting parameters.
  **/
-inline void LPrintToHintText(int client, any ...)
+inline void LPrintHintText(int client, any ...)
 {
     // Real client validation
     if (!IsFakeClient(client))

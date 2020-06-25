@@ -263,7 +263,7 @@ inline bool fileparser_PrecacheSounds(char[] sFileName)
                     hBase.WriteLine(sPath);
                     
                     // Add file to download table
-                    fileparser_PrecacheSoundsFormat(sPath);
+                    fileparser_PrecacheSoundsTable(sPath);
                 }
             }
         }
@@ -290,7 +290,7 @@ inline bool fileparser_PrecacheSounds(char[] sFileName)
             }
             
             // Add file to download table
-            fileparser_PrecacheSoundsFormat(sPath);
+            fileparser_PrecacheSoundsTable(sPath);
         }
     }
     
@@ -783,7 +783,7 @@ inline bool fileparser_PrecacheTextures(char[] sFileName, char[] sPath)
  * @param sPath             The sound path.
  * @return                  True if was precached, false otherwise.
  **/
-inline bool fileparser_PrecacheSoundsFormat(char[] sPath)
+inline bool fileparser_PrecacheSoundsTable(char[] sPath)
 {
     // If sound didn't exist, then
     if (!FileExists(sPath))
@@ -797,7 +797,7 @@ inline bool fileparser_PrecacheSoundsFormat(char[] sPath)
         }
 
         // Return error
-        LogError("[Fileparser] fileparser_PrecacheSoundsFormat: Invalid sound path. File not found: \"%s\"", sPath);
+        LogError("[Fileparser] fileparser_PrecacheSoundsTable: Invalid sound path. File not found: \"%s\"", sPath);
         return false;
     }
     
@@ -832,7 +832,7 @@ inline bool fileparser_PrecacheSoundsFormat(char[] sPath)
     }
     else
     {
-        LogError("[Fileparser] fileparser_PrecacheSoundsFormat: Invalid sound path. File not found: \"%s\"", sPath);
+        LogError("[Fileparser] fileparser_PrecacheSoundsTable: Invalid sound path. File not found: \"%s\"", sPath);
         return false;
     }
     
