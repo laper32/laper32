@@ -66,19 +66,6 @@ inline any clamp(any val, any i1, any i2)
 }
 
 /**
- * @brief Returns an average value of two values.
- *
- * @param i1                The first value.
- * @param i2                The second value.
- *
- * @param                   The average value.
- */
-inline any avg(any i1, any i2)
-{
-    return ( i1 + i2 ) / 2;
-}
-
-/**
  * @brief Returns a value what if "overflowed", fix it to a second round's value.
  *
  * @param value             The value.
@@ -97,12 +84,33 @@ inline float vec3norm(float vec[3])
     return sqrt( Pow(vec[0], 2.0) + Pow(vec[1], 2.0) + Pow(vec[2], 2.0) );
 }
 
+inline float vec3unit(float vec[3])
+{
+    float norm = vec3norm(vec);
+    
+    float output[3];
+    output[0] = vec[0]/norm; output[1] = vec[1]/norm; output[2] = vec[2]/norm;
+
+    return output;
+}
+
+inline float vec3negate(float vec[3])
+{
+    float output[3];
+    
+    output[0] = -vec[0];
+    output[1] = -vec[1];
+    output[2] = -vec[2];
+
+    return output;
+}
+
 /**
  * @brief Returns the square root of the input value, equivalent to floatpower(value, 0.5).
  * 
  * @param val               The input value.
  */
-inline float sqrt(float val)
+inline float sqrt(any val)
 {
     return SquareRoot(val);
 }
