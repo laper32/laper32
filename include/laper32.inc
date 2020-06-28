@@ -29,7 +29,7 @@
 #include <dhooks>
 #endif
 
-#include <laper32/lstd.inc>
+#include <laper32/const.inc>
 #include <laper32/engine.inc>
 #include <laper32/math.inc>
 #include <laper32/mem.inc>
