@@ -34,6 +34,7 @@
 #define MAX_FLOAT               2147483647.0
 #define MAX_INT                 2147483647
 #define hasLength(%0)           (%0[0] != NULL_STRING[0]) 
+#define string(%0)				%0, sizeof(%0)
 
 #define TEXT_COLOR_DEFAILT              "\x01"
 #define TEXT_COLOR_NORMAL               "\x01"

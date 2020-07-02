@@ -16,7 +16,7 @@
  *
  * @return                  The entity index.                       
  **/
-stock int UTIL_CreateTrain(char[] sClassname, float vPosition[3], float vAngle[3], char[] sPath, char[] sSpeed, char[] sSound = "", int iFlags = 0)
+inline int UTIL_CreateTrain(char[] sClassname, float vPosition[3], float vAngle[3], char[] sPath, char[] sSpeed, char[] sSound = "", int iFlags = 0)
 {
     // Create a train entity
     int entity = CreateEntityByName("func_tracktrain"); 
@@ -63,7 +63,7 @@ stock int UTIL_CreateTrain(char[] sClassname, float vPosition[3], float vAngle[3
  *
  * @return                  The entity index.                       
  **/
-stock int UTIL_CreatePath(char[] sClassname, float vPosition[3], float vAngle[3], char[] sNextTarget, int iFlags = 0)
+inline int UTIL_CreatePath(char[] sClassname, float vPosition[3], float vAngle[3], char[] sNextTarget, int iFlags = 0)
 {
     // Create a path entity
     int entity = CreateEntityByName("path_track");
@@ -104,7 +104,7 @@ stock int UTIL_CreatePath(char[] sClassname, float vPosition[3], float vAngle[3]
  *
  * @return                  The entity index.                         
  **/
-stock int UTIL_CreateMonster(char[] sClassname, float vPosition[3], float vAngle[3], char[] sModel, int iFlags = 0)
+inline int UTIL_CreateMonster(char[] sClassname, float vPosition[3], float vAngle[3], char[] sModel, int iFlags = 0)
 {
     // Create a monster entity
     int entity = CreateEntityByName("monster_generic"); 
@@ -145,7 +145,7 @@ stock int UTIL_CreateMonster(char[] sClassname, float vPosition[3], float vAngle
  *
  * @return                  The entity index.                       
  **/
-stock int UTIL_CreatePhysics(char[] sClassname, float vPosition[3], float vAngle[3], char[] sModel, int iFlags = 0)
+inline int UTIL_CreatePhysics(char[] sClassname, float vPosition[3], float vAngle[3], char[] sModel, int iFlags = 0)
 {
     // Create a prop_physics_multiplayer entity
     int entity = CreateEntityByName("prop_physics_multiplayer"); 
@@ -187,7 +187,7 @@ stock int UTIL_CreatePhysics(char[] sClassname, float vPosition[3], float vAngle
  *
  * @return                  The entity index.                       
  **/
-stock int UTIL_CreateDynamic(char[] sClassname, float vPosition[3], float vAngle[3], char[] sModel, char[] sDefaultAnim = "", bool bOverride = true, bool bHoldAnim = false, bool bSolid = false, int iFlags = DYN_COLLISIONDISABLED)
+inline int UTIL_CreateDynamic(char[] sClassname, float vPosition[3], float vAngle[3], char[] sModel, char[] sDefaultAnim = "", bool bOverride = true, bool bHoldAnim = false, bool bSolid = false, int iFlags = DYN_COLLISIONDISABLED)
 {
     // Create a prop_dynamic_override entity
     int entity = CreateEntityByName(bOverride ? "prop_dynamic_override" : "prop_dynamic");
@@ -226,7 +226,7 @@ stock int UTIL_CreateDynamic(char[] sClassname, float vPosition[3], float vAngle
  *
  * @return                  The entity index.                       
  **/
-stock int UTIL_CreateProjectile(float vPosition[3], float vAngle[3], char[] sModel = "")
+inline int UTIL_CreateProjectile(float vPosition[3], float vAngle[3], char[] sModel = "")
 {
     // Create a static entity
     int entity = CreateEntityByName("hegrenade_projectile");
@@ -269,7 +269,7 @@ stock int UTIL_CreateProjectile(float vPosition[3], float vAngle[3], char[] sMod
  *
  * @return                  The entity index.
  **/
-stock int UTIL_CreateSmoke(int parent = -1, float vPosition[3] = NULL_VECTOR, float vAngle[3] = NULL_VECTOR, char[] sAttach = "", char[] sSpreadBase = "100", char[] sSpreadSpeed = "70", char[] sSpeed = "80", char[] sStartSize = "200", char[] sEndSize = "2", char[] sDensity = "30", char[] sLength = "400", char[] sTwist = "20", char[] sColor, char[] sTransparency, char[] sSpriteName, float flRemoveTime = 0.0, float flDurationTime = 0.0)
+inline int UTIL_CreateSmoke(int parent = -1, float vPosition[3] = NULL_VECTOR, float vAngle[3] = NULL_VECTOR, char[] sAttach = "", char[] sSpreadBase = "100", char[] sSpreadSpeed = "70", char[] sSpeed = "80", char[] sStartSize = "200", char[] sEndSize = "2", char[] sDensity = "30", char[] sLength = "400", char[] sTwist = "20", char[] sColor, char[] sTransparency, char[] sSpriteName, float flRemoveTime = 0.0, float flDurationTime = 0.0)
 {
     // Create a smokestack entity
     int entity = CreateEntityByName("env_smokestack");
@@ -347,7 +347,7 @@ stock int UTIL_CreateSmoke(int parent = -1, float vPosition[3] = NULL_VECTOR, fl
  *
  * @return                  The entity index.
  **/
-stock int UTIL_CreateParticle(int parent = -1, float vPosition[3] = NULL_VECTOR, float vAngle[3] = NULL_VECTOR, char[] sAttach = "", char[] sEffect, float flDurationTime = 0.0)
+inline int UTIL_CreateParticle(int parent = -1, float vPosition[3] = NULL_VECTOR, float vAngle[3] = NULL_VECTOR, char[] sAttach = "", char[] sEffect, float flDurationTime = 0.0)
 {
     // Create an attach particle entity
     int entity = CreateEntityByName("info_particle_system");
@@ -412,7 +412,7 @@ stock int UTIL_CreateParticle(int parent = -1, float vPosition[3] = NULL_VECTOR,
  *
  * @return                  The entity index.
  **/
-stock int UTIL_CreateExplosion(float vPosition[3]/*, float vAngle[3] = NULL_VECTOR*/, int iFlags = 0, char[] sSpriteName = "materials/sprites/xfireball3.vmt", float flDamage = 0.0, float flRadius = 0.0, char[] sWeapon = "", int attacker = -1, int inflictor = -1, char[] sIgnore = "")
+inline int UTIL_CreateExplosion(float vPosition[3]/*, float vAngle[3] = NULL_VECTOR*/, int iFlags = 0, char[] sSpriteName = "materials/sprites/xfireball3.vmt", float flDamage = 0.0, float flRadius = 0.0, char[] sWeapon = "", int attacker = -1, int inflictor = -1, char[] sIgnore = "")
 {
     // Create an explosion entity
     int entity = CreateEntityByName("env_explosion");
@@ -479,7 +479,7 @@ stock int UTIL_CreateExplosion(float vPosition[3]/*, float vAngle[3] = NULL_VECT
  *
  * @return                  The entity index.
  **/
-stock int UTIL_CreateDamage(int parent = -1, float vPosition[3] = NULL_VECTOR, int attacker, float flDamage, float flRadius, int iBits = DMG_GENERIC, int weaponID = -1, char[] sAttach = "")
+inline int UTIL_CreateDamage(int parent = -1, float vPosition[3] = NULL_VECTOR, int attacker, float flDamage, float flRadius, int iBits = DMG_GENERIC, int weaponID = -1, char[] sAttach = "")
 {
     // Create a hurt entity
     int entity = CreateEntityByName("point_hurt");           
@@ -550,7 +550,7 @@ stock int UTIL_CreateDamage(int parent = -1, float vPosition[3] = NULL_VECTOR, i
  *
  * @return                  The entity index.
  **/
-stock int UTIL_CreateSprite(int parent = -1, float vPosition[3] = NULL_VECTOR, float vAngle[3] = NULL_VECTOR, char[] sAttach = "", char[] sSprite, char[] sScale, char[] sRender, float flDurationTime = 0.0)
+inline int UTIL_CreateSprite(int parent = -1, float vPosition[3] = NULL_VECTOR, float vAngle[3] = NULL_VECTOR, char[] sAttach = "", char[] sSprite, char[] sScale, char[] sRender, float flDurationTime = 0.0)
 {
     // Create a sprite entity
     int entity = CreateEntityByName("env_sprite");
@@ -608,7 +608,7 @@ stock int UTIL_CreateSprite(int parent = -1, float vPosition[3] = NULL_VECTOR, f
  *
  * @return                  The entity index.
  **/
-stock int UTIL_CreateSpriteController(int parent, char[] sSprite, char[] sVar)
+inline int UTIL_CreateSpriteController(int parent, char[] sSprite, char[] sVar)
 {
     // Create a material controller entity
     int entity = CreateEntityByName("material_modify_control");
@@ -660,7 +660,7 @@ stock int UTIL_CreateSpriteController(int parent, char[] sSprite, char[] sVar)
  *
  * @return                  The entity index.
  **/
-stock int UTIL_CreateTesla(int parent = -1, float vPosition[3] = NULL_VECTOR, float vAngle[3] = NULL_VECTOR, char[] sAttach = "", char[] sRadius = "500.0", char[] sSound = "DoSpark", char[] sCountMin = "42", char[] sCountMax = "62", char[] sTextureName = "materials/sprites/physbeam.vmt", char[] sColor = "255 255 255", char[] sThickMin = "10.0", char[] sThickMax = "11.0", char[] sLifeMin = "0.3", char[] sLifeMax = "0.3", char[] sIntervalMin = "0.1", char[] sIntervalMax = "0.2", float flDurationTime = 0.0)
+inline int UTIL_CreateTesla(int parent = -1, float vPosition[3] = NULL_VECTOR, float vAngle[3] = NULL_VECTOR, char[] sAttach = "", char[] sRadius = "500.0", char[] sSound = "DoSpark", char[] sCountMin = "42", char[] sCountMax = "62", char[] sTextureName = "materials/sprites/physbeam.vmt", char[] sColor = "255 255 255", char[] sThickMin = "10.0", char[] sThickMax = "11.0", char[] sLifeMin = "0.3", char[] sLifeMax = "0.3", char[] sIntervalMin = "0.1", char[] sIntervalMax = "0.2", float flDurationTime = 0.0)
 {
     // Create a tesla entity
     int entity = CreateEntityByName("point_tesla");
@@ -740,7 +740,7 @@ stock int UTIL_CreateTesla(int parent = -1, float vPosition[3] = NULL_VECTOR, fl
  *
  * @return                  The entity index.
  **/
-stock int UTIL_CreateShooter(int parent, char[] sAttach, char[] sRender = "5", char[] sSound = "-1", int iSkin = 0, char[] sTextureName, float vAngle[3] = NULL_VECTOR, float vGibAngle[3] = NULL_VECTOR, float iGibs, float flDelay, float flVelocity, float flVariance, float flLife, float flDurationTime)
+inline int UTIL_CreateShooter(int parent, char[] sAttach, char[] sRender = "5", char[] sSound = "-1", int iSkin = 0, char[] sTextureName, float vAngle[3] = NULL_VECTOR, float vGibAngle[3] = NULL_VECTOR, float iGibs, float flDelay, float flVelocity, float flVariance, float flLife, float flDurationTime)
 {
     // Create a shooter entity
     int entity = CreateEntityByName("env_shooter");
@@ -823,7 +823,7 @@ stock int UTIL_CreateShooter(int parent, char[] sAttach, char[] sRender = "5", c
  *
  * @return                  The entity index.
  **/
-stock int UTIL_CreateBeam(float vStartPosition[3], float vEndPosition[3], char[] sDamage = "0", char[] sFrame = "0", char[] sWidth = "4.0", char[] sRenderFX = "0", char[] sType = "3", char[] sRate = "0", char[] sDecalName = "Bigshot", char[] sScroll = "35", char[] sScale = "1.0", char[] sTextureName = "materials/sprites/purplelaser1.vmt", char[] sLife = "0", char[] sStrike = "1", int iFlags = 0, char[] sAmplitude = "0", char[] sRadius = "256", char[] sRenderAMT = "100", char[] sColor, float flDelayTime, float flDurationTime, char[] sName)
+inline int UTIL_CreateBeam(float vStartPosition[3], float vEndPosition[3], char[] sDamage = "0", char[] sFrame = "0", char[] sWidth = "4.0", char[] sRenderFX = "0", char[] sType = "3", char[] sRate = "0", char[] sDecalName = "Bigshot", char[] sScroll = "35", char[] sScale = "1.0", char[] sTextureName = "materials/sprites/purplelaser1.vmt", char[] sLife = "0", char[] sStrike = "1", int iFlags = 0, char[] sAmplitude = "0", char[] sRadius = "256", char[] sRenderAMT = "100", char[] sColor, float flDelayTime, float flDurationTime, char[] sName)
 {
     // Create a beam entity
     int entity = CreateEntityByName("env_beam");
@@ -932,7 +932,7 @@ stock int UTIL_CreateBeam(float vStartPosition[3], float vEndPosition[3], char[]
  *
  * @return                  The entity index.
  **/
-stock int UTIL_CreateLight(int parent = -1, float vPosition[3] = NULL_VECTOR, char[] sAttach = "", char[] sInnerCone = "0", char[] sCone = "80", char[] sBrightness = "1", char[] sPitch = "90", char[] sStyle = "1", int iFlags = 0, char[] sColor, float flDistance, float flRadius, float flDurationTime = 0.0)
+inline int UTIL_CreateLight(int parent = -1, float vPosition[3] = NULL_VECTOR, char[] sAttach = "", char[] sInnerCone = "0", char[] sCone = "80", char[] sBrightness = "1", char[] sPitch = "90", char[] sStyle = "1", int iFlags = 0, char[] sColor, float flDistance, float flRadius, float flDurationTime = 0.0)
 {
     // Create an light_dynamic entity
     int entity = CreateEntityByName("light_dynamic");
@@ -1001,7 +1001,7 @@ stock int UTIL_CreateLight(int parent = -1, float vPosition[3] = NULL_VECTOR, ch
  * @param iBlue             (Optional) Amount of a blue (0-255)
  * @param iAlpha            (Optional) Amount of an alpha (0-255)
  **/
-stock void UTIL_CreateGlowing(int entity, bool enableState, int iType = 0, int iRed = 255, int iGreen = 255, int iBlue = 255, int iAlpha = 255)
+inline void UTIL_CreateGlowing(int entity, bool enableState, int iType = 0, int iRed = 255, int iGreen = 255, int iBlue = 255, int iAlpha = 255)
 {
     // Validate offset
     static int iGlowOffset;
@@ -1029,7 +1029,7 @@ stock void UTIL_CreateGlowing(int entity, bool enableState, int iType = 0, int i
  * @param color             The offset index.
  * @param iRender           The render amount.
  **/
-stock void UTIL_SetRenderColor(int entity, RenderingColorType color, int iRender)
+inline void UTIL_SetRenderColor(int entity, RenderingColorType color, int iRender)
 {
     // Validate offset
     static int iRenderOffset;
@@ -1050,7 +1050,7 @@ stock void UTIL_SetRenderColor(int entity, RenderingColorType color, int iRender
  * @param color             The offset index.
  * @return                  The render amount.
  **/
-stock int UTIL_GetRenderColor(int entity, RenderingColorType color)
+inline int UTIL_GetRenderColor(int entity, RenderingColorType color)
 {
     // Validate offset
     static int iRenderOffset;
@@ -1072,7 +1072,7 @@ stock int UTIL_GetRenderColor(int entity, RenderingColorType color)
  * @param vBullet           The position of a bullet hit.
  * @param flDurationTime    The duration of life.
  **/
-stock void UTIL_CreateTracer(int parent, char[] sAttach, char[] sEffect, float vBullet[3], float flDurationTime)
+inline void UTIL_CreateTracer(int parent, char[] sAttach, char[] sEffect, float vBullet[3], float flDurationTime)
 {
     // Validate name
     if (!hasLength(sEffect))
@@ -1152,7 +1152,7 @@ stock void UTIL_CreateTracer(int parent, char[] sAttach, char[] sEffect, float v
  * @param flFrequency       The frequency of shake.
  * @param flDurationTime    The duration of shake in the seconds.
  **/
-stock void UTIL_CreateShakeScreen(int client, float flAmplitude, float flFrequency, float flDurationTime)
+inline void UTIL_CreateShakeScreen(int client, float flAmplitude, float flFrequency, float flDurationTime)
 {
     // Create message
     Protobuf hShake = view_as<Protobuf>(StartMessageOne("Shake", client));
@@ -1180,7 +1180,7 @@ stock void UTIL_CreateShakeScreen(int client, float flAmplitude, float flFrequen
  * @param iFlags            The bits with some flags.
  * @param vColor            The array with RGB color.
  **/
-stock void UTIL_CreateFadeScreen(int client, float flDuration, float flHoldTime, int iFlags, int vColor[4])
+inline void UTIL_CreateFadeScreen(int client, float flDuration, float flHoldTime, int iFlags, int vColor[4])
 {
     // Create message
     Protobuf hFade = view_as<Protobuf>(StartMessageOne("Fade", client));
@@ -1209,7 +1209,7 @@ stock void UTIL_CreateFadeScreen(int client, float flDuration, float flHoldTime,
  * @param flForce           The force amount.
  * @param flRadius          The radius amount.
 **/
-stock void UTIL_CreatePhysForce(int client, float vPosition[3], float vOrigin[3], float flDistance, float flForce, float flRadius)
+inline void UTIL_CreatePhysForce(int client, float vPosition[3], float vOrigin[3], float flDistance, float flForce, float flRadius)
 {
     // Calculate the velocity vector
     static float vVelocity[3];
@@ -1234,7 +1234,7 @@ stock void UTIL_CreatePhysForce(int client, float vPosition[3], float vOrigin[3]
  * @param client            The client index.
  * @param sMessage          The message to send.
  **/
-stock void UTIL_CreateClientHint(int client, char[] sMessage)
+inline void UTIL_CreateClientHint(int client, char[] sMessage)
 {
     // Create message
     Protobuf hMessage = view_as<Protobuf>(StartMessageOne("HintText", client));
@@ -1268,7 +1268,7 @@ stock void UTIL_CreateClientHint(int client, char[] sMessage)
  * @param fadeOut           Number of seconds to spend fading out.
  * @param sMessage          The message to send.
  **/
-stock void UTIL_CreateClientHud(Handle hSync, int client, float x, float y, float holdTime, int r, int g, int b, int a, int effect, float fxTime, float fadeIn, float fadeOut, char[] sMessage)
+inline void UTIL_CreateClientHud(Handle hSync, int client, float x, float y, float holdTime, int r, int g, int b, int a, int effect, float fxTime, float fadeIn, float fadeOut, char[] sMessage)
 {
     // Sets HUD parameters for drawing text
     SetHudTextParams(x, y, holdTime, r, g, b, a, effect, fxTime, fadeIn, fadeOut);
@@ -1286,7 +1286,7 @@ stock void UTIL_CreateClientHud(Handle hSync, int client, float x, float y, floa
  *
  * @return                  The model index.
  **/
-stock int UTIL_PrecacheModel(char[] sModel)
+inline int UTIL_PrecacheModel(char[] sModel)
 {
     // Precache main model
     int iModel = PrecacheModel(sModel, true);
@@ -1318,7 +1318,7 @@ stock int UTIL_PrecacheModel(char[] sModel)
  * @param entity            The entity index. 
  * @param flDurationTime    The number of seconds to set on a fire.
  **/
-stock void UTIL_IgniteEntity(int entity, float flDurationTime)
+inline void UTIL_IgniteEntity(int entity, float flDurationTime)
 {
     // Validate duration
     if (flDurationTime > 0.0) 
@@ -1333,7 +1333,7 @@ stock void UTIL_IgniteEntity(int entity, float flDurationTime)
  * 
  * @param entity            The entity index. 
  **/
-stock void UTIL_ExtinguishEntity(int entity)
+inline void UTIL_ExtinguishEntity(int entity)
 {
     // Validate fire entity
     int iFire = GetEntPropEnt(entity, Prop_Data, "m_hEffectEntity");
@@ -1358,7 +1358,7 @@ stock void UTIL_ExtinguishEntity(int entity)
  * @param entity            The entity index. 
  * @param flDelayTime       The number of seconds to kill an entity.
  **/
-stock void UTIL_RemoveEntity(int entity, float flDelayTime)
+inline void UTIL_RemoveEntity(int entity, float flDelayTime)
 {
     // Initialize flags char
     static char sFlags[SMALL_LINE_LENGTH];
@@ -1377,7 +1377,7 @@ stock void UTIL_RemoveEntity(int entity, float flDelayTime)
  *
  * @return                  The decal index.
  **/
-stock void UTIL_PrecacheDecal(char[] sDecal)
+inline void UTIL_PrecacheDecal(char[] sDecal)
 {
     // Precache main decal
     int iDecal = PrecacheDecal(sDecal, true);
@@ -1402,7 +1402,7 @@ stock void UTIL_PrecacheDecal(char[] sDecal)
  * 
  * @param soundPath         The sound path.
  **/
-stock void UTIL_PrecacheSound(char[] sSound)
+inline void UTIL_PrecacheSound(char[] sSound)
 {
     // Initialize path char
     static char sPath[PLATFORM_MAX_PATH];
@@ -1441,7 +1441,7 @@ stock void UTIL_PrecacheSound(char[] sSound)
  * @param filter            The function to use as a filter.
  * @param data              The data value to pass through to the filter function.
  **/
-stock void UTIL_FindHullIntersection(Handle &hTrace, float vPosition[3], const float vMins[3], const float vMaxs[3], TraceEntityFilter filter, any data)
+inline void UTIL_FindHullIntersection(Handle &hTrace, float vPosition[3], const float vMins[3], const float vMaxs[3], TraceEntityFilter filter, any data)
 {
     // Initialize vectors
     static float vEndPosition[3]; static float vHullPosition[3]; static float vHullEnd[3]; static float vHullBox[2][3];
@@ -1529,7 +1529,7 @@ stock void UTIL_FindHullIntersection(Handle &hTrace, float vPosition[3], const f
  * @param flSpeedScale      (Optional) The speed scale value.
  * @param verticalScale     (Optional) Set to true for reversing vertical velocity's value, false to reset.
  **/
-stock void UTIL_GetVelocityByAim(float vStartPosition[3], float vEndPosition[3], float vAngle[3], float vVelocity[3], float flSpeedScale = 1.0, bool verticalScale = false)
+inline void UTIL_GetVelocityByAim(float vStartPosition[3], float vEndPosition[3], float vAngle[3], float vVelocity[3], float flSpeedScale = 1.0, bool verticalScale = false)
 {
     // Calculate the velocity's vector
     MakeVectorFromPoints(vStartPosition, vEndPosition, vVelocity);
@@ -1563,7 +1563,7 @@ stock void UTIL_GetVelocityByAim(float vStartPosition[3], float vEndPosition[3],
  *
  * @return                  True of false.        
  **/
-stock bool UTIL_CanSeeEachOther(int entity, int target, float vPosition[3], TraceEntityFilter filter)
+inline bool UTIL_CanSeeEachOther(int entity, int target, float vPosition[3], TraceEntityFilter filter)
 {
     // Initialize vectors
     static float vOrigin[3]; static float vMaxs[3];
@@ -1614,7 +1614,7 @@ stock bool UTIL_CanSeeEachOther(int entity, int target, float vPosition[3], Trac
  *
  * @return                  True of false.        
  **/
-stock bool UTIL_TraceRay(int entity, int target, float vStartPosition[3], float vEndPosition[3], TraceEntityFilter filter)
+inline bool UTIL_TraceRay(int entity, int target, float vStartPosition[3], float vEndPosition[3], TraceEntityFilter filter)
 {
     // Starts up a new trace ray using a new trace result and a customized trace ray filter
     TR_TraceRayFilter(vStartPosition, vEndPosition, (MASK_SHOT|CONTENTS_GRATE), RayType_EndPoint, filter, entity);
@@ -1639,7 +1639,7 @@ stock bool UTIL_TraceRay(int entity, int target, float vStartPosition[3], float 
  *
  * @return                  The distance amount.        
  **/
-stock float UTIL_GetDistanceBetween(int client, int entity)
+inline float UTIL_GetDistanceBetween(int client, int entity)
 {
     // Initialize vectors
     static float vPosition[3]; static float vEndPosition[3]; static float vMins[3]; static float vMaxs[3];
@@ -1683,7 +1683,7 @@ stock float UTIL_GetDistanceBetween(int client, int entity)
  *
  * @return                  The string index.
  **/
-stock int GetEffectIndex(char[] sEffect)
+inline int GetEffectIndex(char[] sEffect)
 {
     // Initialize the table index
     static int table = INVALID_STRING_TABLE;
@@ -1715,7 +1715,7 @@ stock int GetEffectIndex(char[] sEffect)
  *
  * @return                  The string index.
  **/
-stock int GetParticleEffectIndex(char[] sEffect)
+inline int GetParticleEffectIndex(char[] sEffect)
 {
     // Initialize the table index
     static int table = INVALID_STRING_TABLE;
@@ -1746,7 +1746,7 @@ stock int GetParticleEffectIndex(char[] sEffect)
  * @param client            (Optional) The client index.
  * @param sEffect           The effect name.
  **/
-stock void PrecacheParticleFile(int client = 0, char[] sEffect)
+inline void PrecacheParticleFile(int client = 0, char[] sEffect)
 {
     // Initialize the table index
     static int table = INVALID_STRING_TABLE;
@@ -1784,7 +1784,7 @@ stock void PrecacheParticleFile(int client = 0, char[] sEffect)
  *
  * @param sEffect           The effect name.
  **/
-stock void PrecacheParticleEffect(char[] sEffect)
+inline void PrecacheParticleEffect(char[] sEffect)
 {
     // Initialize the table index
     static int table = INVALID_STRING_TABLE;
@@ -1809,7 +1809,7 @@ stock void PrecacheParticleEffect(char[] sEffect)
  * @param sEffect           The string to return effect in.
  * @param iMaxLen           The lenght of string.
  **/
-stock void GetEffectName(int iIndex, char[] sEffect, int iMaxLen)
+inline void GetEffectName(int iIndex, char[] sEffect, int iMaxLen)
 {
     // Initialize the table index
     static int table = INVALID_STRING_TABLE;
@@ -1832,7 +1832,7 @@ stock void GetEffectName(int iIndex, char[] sEffect, int iMaxLen)
  * @param sEffect           The string to return effect in.
  * @param iMaxLen           The lenght of string.
  **/
-stock void GetParticleEffectName(int iIndex, char[] sEffect, int iMaxLen)
+inline void GetParticleEffectName(int iIndex, char[] sEffect, int iMaxLen)
 {
     // Initialize the table index
     static int table = INVALID_STRING_TABLE;
@@ -1853,7 +1853,7 @@ stock void GetParticleEffectName(int iIndex, char[] sEffect, int iMaxLen)
  *
  * @return                  The table size.    
  **/
-stock void GetEffectNameCount(/*void*/)
+inline void GetEffectNameCount(/*void*/)
 {
     // Initialize the table index
     static int table = INVALID_STRING_TABLE;
@@ -1874,7 +1874,7 @@ stock void GetEffectNameCount(/*void*/)
  *
  * @return                  The table size.    
  **/
-stock int GetParticleEffectCount(/*void*/)
+inline int GetParticleEffectCount(/*void*/)
 {
     // Initialize the table index
     static int table = INVALID_STRING_TABLE;
