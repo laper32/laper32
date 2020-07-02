@@ -1,7 +1,7 @@
-#if defined _Lstd_included
+#if defined _const_included
 #endinput
 #endif
-#define _Lstd_included
+#define _const_included
 
 // Game data
 #define GAMEDATA_CONFIG                     "laper32.gamedata"
