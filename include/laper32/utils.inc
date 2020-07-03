@@ -1614,8 +1614,8 @@ inline bool UTIL_CanSeeEachOther(int entity, int target, float vPosition[3], Tra
 inline bool UTIL_GetTraceEndPoint(int entity, float vPosition[3])
 {
     float vAngles[3], vOrigin[3];
-    GetClientEyePosition(client, vOrigin); // player's eye position
-    GetClientEyeAngles(client, vAngles); // plauer's eye angle
+    ToolsGetAbsOrigin(entity, vOrigin); // player's eye position
+    ToolsGetAbsAngles(entity, vAngles); // plauer's eye angle
 
     // trace it to the end point
     Handle trace = TR_TraceRayFilterEx(vOrigin, vAngles, MASK_SHOT, RayType_Infinite, PlayersFilter); 
