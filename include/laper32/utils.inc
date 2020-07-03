@@ -1604,6 +1604,34 @@ inline bool UTIL_CanSeeEachOther(int entity, int target, float vPosition[3], Tra
 }
 
 /**
+ * @brief Gets the End of the point what the entity traces to.
+ *
+ * @param entity            The entity index.
+ * @param vPosition         The position of the ray.
+ *
+ * @return                  T/F.
+ */
+inline bool UTIL_GetTraceEndPoint(int entity, float vPosition[3])
+{
+    float vAngles[3], vOrigin[3];
+    GetClientEyePosition(client, vOrigin); // player's eye position
+    GetClientEyeAngles(client, vAngles); // plauer's eye angle
+
+    // trace it to the end point
+    Handle trace = TR_TraceRayFilterEx(vOrigin, vAngles, MASK_SHOT, RayType_Infinite, PlayersFilter); 
+    
+    bool bHit;
+    if (TR_DidHit(trace))
+    {
+        TR_GetEndPosition(vPosition, trace);
+        bHit = true;
+    }
+    delete trace;
+    // CloseHandle(trace);
+    return bHit;
+}
+
+/**
  * @brief Starts up a new trace ray using a new trace result and a customized trace ray filter. 
  *
  * @param entity            The entity index.
@@ -1892,13 +1920,13 @@ inline int GetParticleEffectCount(/*void*/)
 
 // ______________________________________________________________________________________________ //
 
-inline void UTIL_IsMapZE()
+inline bool UTIL_IsMapZE()
 {
     // Init var
     static char sMapName[PLATFORM_LINE_LENGTH];
 
     // Get map name
-    GetCurrentMap(sMapname, sizeof(sMapname));
+    GetCurrentMap(sMapName, sizeof(sMapName));
 
     // ZE Validation
     if (sMapName[0] = 'z' && sMapName[1] = 'e') // ze_
@@ -1909,4 +1937,9 @@ inline void UTIL_IsMapZE()
     
     // default false
     return false;
+}
+
+inline bool PlayersFilter(int entity, int contentsMask)
+{
+    return ( (entity == 0) || (entity > MaxClients) );
 }
