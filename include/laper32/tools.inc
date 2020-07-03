@@ -656,6 +656,17 @@ inline void ToolsSetParent(int entity, int parent)
 }
 
 /**
+ * @brief Gets the ragdoll index on a client.
+ *
+ * @param client            The client index.
+ * @return                  The ragdoll index.
+ **/
+inline int ToolsGetRagdollIndex(int client)
+{
+    return GetEntPropEnt(client, Prop_Send, "m_hRagdoll");
+}
+
+/**
  * @brief Gets the collision group on a client.
  *
  * @param client            The client index.
