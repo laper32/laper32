@@ -978,3 +978,129 @@ inline void ToolsJumpToPoint(float vVector[3], float vAngle[3], float flDistance
     // Add the vectors together
     AddVectors(vVector, vViewLoc, vResult);
 }
+
+/**
+ * @brief Calculate whether the sector is intersecing with the disk.
+ *
+ * @link https://zhuanlan.zhihu.com/p/23903445?hmsr=toutiao.io
+ *
+ * @param vSectorOrigin                         The sector origin.
+ * @param vSectorDirection                      The sector direction.
+ * @param flSectorScannedAngle                  The sector scanned angle.
+ * @param flSectorRadius                        The sector radius.
+ * @param flDiskOrigin                          The disk origin.
+ * @param flDiskRadius                          The disk radius.
+ * @return                                      True when they are intersecting, false otherwise.
+ */
+inline bool ToolsIsSectorDiskIntersect(
+    float vSectorOrigin[3], float vSectorDirection[3], float flSectorScannedAngle,
+    float flSectorRadius, float vDiskOrigin[3], float flDiskRadius
+    )
+{
+    // First to calculate whether is sepearable.
+    // In this term, treat sector as a disk. This is because: Sector is (X/Y) of a circle.
+
+    // Subtract vector.
+    // vOriginDistance = vDiskOrigin - vSectorOrigin
+    static float vOriginDistance[3];
+    SubtractVectors(vDiskOrigin, vSectorOrigin, vOriginDistance);
+
+    // Calculate the distance between two points.
+    float flOriginDistanceBetween = GetVectorLength(vOriginDistance, true);
+
+    // Calculate the sum of two disks radius.
+    float flRangeSum = flSectorRadius + flDiskRadius;
+
+    // We know that if the distance between two points greater than the sum of the range of the sector and the disk, then
+    // it is absolutely not intersecting.
+    if (flOriginDistanceBetween <= flRangeSum * flRangeSum)  return true;
+
+    // We changed basis of the coordinate, so that we need to re-calculate the origin of the disk.
+    // Treat the disk's origin is P.
+
+    // Calculate X-axis value.
+    float Px = GetVectorDotProduct(vOriginDistance, vSectorDirection);
+
+    // Calculate Y-axis value.
+    // Before calculate P, we need to calculate the sector's unit vector's transform.
+    static float vSectorDirectionTransformed[3];
+    vSectorDirectionTransformed[0] = -vSectorDirection[1]; // x' = -y
+    vSectorDirectionTransformed[1] =  vSectorDirection[0]; // y' = x
+    vSectorDirectionTransformed[2] =  vSectorDirection[2]; // We don't consider anything about Z-Value(Why we consider about this??)
+
+    // We dont need to consider negative condition.
+    // Why we need to consider it when it is symmetry?
+    float Py = fabs(GetVectorDotProduct(vOriginDistance, vSectorDirectionTransformed));
+
+    // Px > |p|*cos(angle) -> Not intersecting
+    if (Px > ( sqrt(flOriginDistanceBetween) * Cosine(flSectorScannedAngle) ) ) return true;
+
+    // Calculate left line whether intersect with the disk.
+    static float vLineAngle[3], vLineWithAngleCalculated[3], vLineTransposedDisk[3];
+    vLineAngle[0] = Cosine(flSectorScannedAngle);
+    vLineAngle[1] = Sine(flSectorScannedAngle);
+    vLineAngle[2] = 0.0;
+
+    // Construct line what the disk is using.
+    vLineWithAngleCalculated[0] = flSectorRadius * vLineAngle[0];
+    vLineWithAngleCalculated[1] = flSectorRadius * vLineAngle[1];
+    vLineWithAngleCalculated[2] = vLineAngle[2];
+
+    // Construct transposed disk position.
+    vLineTransposedDisk[0] = Px;
+    vLineTransposedDisk[1] = Py;
+    vLineTransposedDisk[2] = 0.0;
+
+    // Construct zero vector.
+    static float vZeroVec[3];
+    vZeroVec[0] = 0.0;
+    vZeroVec[1] = 0.0;
+    vZeroVec[2] = 0.0;
+
+    // When the distance is <= the disk range => Intersecting
+    return (ToolsCalculateLinePointShortestSquaredDistance(vZeroVec, vLineWithAngleCalculated, vLineTransposedDisk) <= flDiskRadius * flDiskRadius)
+}
+
+/**
+ * @brief Calculate the distance between a line and a point.
+ * @note Formula: x(t) = x_0 + t * u.
+ *              x_0: original point
+ *              u: the end point of the line.
+ *
+ * @param vLineOrigin               The origin point of a line.
+ * @param vLineEnd                  The end point of a line.
+ * @param vPoint                    Any point.
+ * @return                          The shortest squared distance between two a line and a point.
+ */
+inline float ToolsCalculateLinePointShortestSquaredDistance(float vLineOrigin[3], float vLineEnd[3], float vPoint[3])
+{
+    // We need to calculate t-value, using formula below:
+    // t = (x-x0)*u/|u|^2
+    // x-x0 forms a vector, and then dot product the point, so that can calculate the t value.
+
+    // Make vector.
+    static float vLineVec[3];
+    MakeVectorFromPoints(vLineOrigin, vLineEnd, vLineVec);
+
+    // Calculate t-value
+    float t = GetVectorDotProduct(vLineVec, vPoint) / GetVectorLength(vPoint, true);
+
+    // Formula d = | x - ( x_0 + clamp(t, 0, 1) * u ) |
+    // NOTE: x, x_0, u are all vectors.
+    // We need to calculate from inside to outside.
+
+    // Scale vector at first.
+    ScaleVector(vPoint, clamp(t, 0.0, 1.0));
+
+    // Calculate the vector about the line-origin and the point.
+    static float vAddVectorTemp[3];
+    AddVectors(vLineOrigin, vPoint, vAddVectorTemp);
+
+    // Subtract the vector about the line end & the vector added what we calculated.
+    static float vSubtractVectorTemp[3];
+    SubtractVectors(vLineEnd, vAddVectorTemp, vSubtractVectorTemp);
+
+    // Get end point.
+    // We dont need to get its squared root, for optimization.
+    return GetVectorLength(vSubtractVectorTemp, true);
+}

@@ -62,7 +62,7 @@ inline any max(any i1, any i2)
  */
 inline any clamp(any val, any i1, any i2)
 {
-    return ( (val > i1) ? max : (val < min) ? min : val );
+    return ( (val > i2) ? i2 : (val < i1) ? i1 : val );
 }
 
 /**
@@ -77,32 +77,6 @@ inline any clamp(any val, any i1, any i2)
 inline any overflow(any value, any i1, any i2)
 {
     return (value % max) + min;
-}
-
-inline float vec3norm(float vec[3])
-{
-    return sqrt( Pow(vec[0], 2.0) + Pow(vec[1], 2.0) + Pow(vec[2], 2.0) );
-}
-
-inline float vec3unit(float vec[3])
-{
-    float norm = vec3norm(vec);
-    
-    float output[3];
-    output[0] = vec[0]/norm; output[1] = vec[1]/norm; output[2] = vec[2]/norm;
-
-    return output;
-}
-
-inline float vec3negate(float vec[3])
-{
-    float output[3];
-    
-    output[0] = -vec[0];
-    output[1] = -vec[1];
-    output[2] = -vec[2];
-
-    return output;
 }
 
 /**
