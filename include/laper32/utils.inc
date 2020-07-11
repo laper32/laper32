@@ -1556,6 +1556,9 @@ inline void UTIL_GetVelocityByAim(float vStartPosition[3], float vEndPosition[3]
  * @note Check 3 spots, or else when standing right next to someone looking at their eyes, 
  *       the angle will be too great to see their center. Thank to Pelipoika.
  *
+ * @note This should be a validation that whether on same plane, not can see each other.
+ * 		 To check whether can need, an intersection test is required.
+ *
  * @param entity            The entity index. 
  * @param target            The target index. 
  * @param vPosition         The entity position.
@@ -1563,7 +1566,7 @@ inline void UTIL_GetVelocityByAim(float vStartPosition[3], float vEndPosition[3]
  *
  * @return                  True of false.        
  **/
-inline bool UTIL_CanSeeEachOther(int entity, int target, float vPosition[3], TraceEntityFilter filter)
+inline bool UTIL_IsOnSamePlane(int entity, int target, float vPosition[3], TraceEntityFilter filter)
 {
     // Initialize vectors
     static float vOrigin[3]; static float vMaxs[3];
