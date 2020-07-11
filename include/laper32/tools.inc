@@ -61,7 +61,7 @@ inline float ToolsGetSpeed(int entity)
     static float vVeclocity[3];
     ToolsGetVelocity(entity, vVeclocity);
 
-    return vec3norm(vVeclocity);
+    return GetVectorLength(vVeclocity);
 }
 
 /**
