@@ -19,3 +19,4 @@ git bash https://github.com/laper32/laper32.git
 
 # III. Misc
 1. As I have described above, this is only used for myself, so that you may meet the bug. You can contact me to fix the bug, or pull your own request then merge.
+
