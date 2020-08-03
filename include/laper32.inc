@@ -40,7 +40,8 @@
 #include <laper32/text.inc>
 #include <laper32/playermgr.inc>
 #include <laper32/hint.inc>
-
+#include <laper32/md5.inc>
+#include <laper32/base64.inc>
 
 // Here is used for _ArmsFix_ Extension
 // Do not edit it unless you _EXACTLY_ know what you are doing!

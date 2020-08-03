@@ -316,6 +316,32 @@ inline void LPrintToChatSingleLine(int client, any ...)
     }
 }
 
+inline void LPrintToChatTeamSingleLine(int team, any ...)
+{
+    for (int i = 1; i <= MaxClients; i++)
+    {
+        if (!IsPlayerExist(i, false)) continue;
+
+        if (ToolsGetTeam(i) != team) continue;
+
+        if (!IsFakeClient(i))
+        {
+            // Sets translation target
+            SetGlobalTransTarget(i);
+            
+            // Translate phrase
+            static char sTranslation[CHAT_LINE_LENGTH];
+            VFormat(sTranslation, CHAT_LINE_LENGTH, "%t", 1);
+            
+            // Format string to create plugin style
+            FormatString(sTranslation, CHAT_LINE_LENGTH);
+            
+            // Print translated phrase to the client chat
+            PrintToChat(i, sTranslation);
+        }
+    }
+}
+
 /**
  * @brief Print center text to all clients.
  *
