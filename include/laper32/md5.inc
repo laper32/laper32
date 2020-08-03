@@ -13,7 +13,7 @@
  */
 inline void md5sum(const char[] str, char[] output, int maxlen)
 {
-    char x[2], buf[4], input[64];
+    int x[2], buf[4], input[64];
     int i, ii;
 
     int len = strlen(str);

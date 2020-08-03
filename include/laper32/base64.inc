@@ -11,12 +11,12 @@
  *
  ***********************************************************************************/
 
-static const char[] table = 
+static const char table[] = 
   // 0000000000111111111122222222223333333333444444444455555555556666
   // 0123456789012345678901234567890123456789012345678901234567890123
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-static const int[] decodeTable = 
+static const int decodeTable[] = 
 {
 //  0   1   2   3   4   5   6   7   8   9
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,   //   0 -   9
@@ -54,8 +54,8 @@ static const int[] decodeTable =
 static const char cFillChar          = '=';
 
 // The conversion characters between the standard and URL-compliance Base64 protocols
-static const char[] mime_chars       = "+/=";
-static const char[] url_chars        = "-_.";
+static const char mime_chars[]       = "+/=";
+static const char url_chars[]        = "-_.";
 
 /**
  * Encodes a string or binary data into Base64
