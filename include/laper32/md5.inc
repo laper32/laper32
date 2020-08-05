@@ -119,7 +119,7 @@ inline void md5sum(const char[] str, char[] output, int maxlen)
         inx[i] =    (input[ii + 3] << 24) | 
                     (input[ii + 2] << 16) | 
                     (input[ii + 1] <<  8) | 
-                    (input[ii    ]      );
+                    (input[ii    ]      ) ;
     }
 
     transform(buf, inx);
@@ -178,11 +178,11 @@ inline void transform(int[] _buffer, int[] _input)
     GG(c, d, a, b, _input[ 7], 14, 0x676f02d9);
     GG(b, c, d, a, _input[12], 20, 0x8d2a4c8a);
 
-    HH(a, b, c, d, _input[ 5], 4, 0xfffa3942);
+    HH(a, b, c, d, _input[ 5],  4, 0xfffa3942);
     HH(d, a, b, c, _input[ 8], 11, 0x8771f681);
     HH(c, d, a, b, _input[11], 16, 0x6d9d6122);
     HH(b, c, d, a, _input[14], 23, 0xfde5380c);
-    HH(a, b, c, d, _input[ 1], 4, 0xa4beea44);
+    HH(a, b, c, d, _input[ 1],  4, 0xa4beea44);
     HH(d, a, b, c, _input[ 4], 11, 0x4bdecfa9);
     HH(c, d, a, b, _input[ 7], 16, 0xf6bb4b60);
     HH(b, c, d, a, _input[10], 23, 0xbebfbc70);
@@ -233,7 +233,7 @@ static inline int GG(int &a, int &b, int &c, int &d, int x, int s, int ac)
 }
 
 static inline int HH(int &a, int &b, int &c, int &d, int x, int s, int ac)
-    {
+{
     a += ((b) ^ (c) ^ (d)) + x + ac;
     a = (((a) << (s)) | ((a) >>> (32-(s))));
     a += b;

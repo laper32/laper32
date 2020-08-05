@@ -45,7 +45,7 @@ static const int decodeTable[] =
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,   // 230 - 239
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,   // 240 - 249
     0,  0,  0,  0,  0,  0                    // 250 - 256
-}
+};
 
 /*
  * For some reason the standard demands a string in 24-bit (3 character) intervals.
@@ -180,7 +180,7 @@ inline int decode(const char[] sSource, char[] sResult, int len)
  * @param len			The maximum length of the storage buffer in characters/bytes.
  * @return				Number of cells written.
  */
-inline int mine2url(const char[] sSource, char[] sResult, int len)
+inline int mime2url(const char[] sSource, char[] sResult, int len)
 {
     int chars_len = sizeof(mime_chars);	// Length of the two standards vs. URL character lists
     int nLength;								// The string length to be read from the input
