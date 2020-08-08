@@ -331,7 +331,7 @@ inline void LPrintToChatTeamSingleLine(int team, any ...)
             
             // Translate phrase
             static char sTranslation[CHAT_LINE_LENGTH];
-            VFormat(sTranslation, CHAT_LINE_LENGTH, "%t", 1);
+            VFormat(sTranslation, CHAT_LINE_LENGTH, "%t", 2);
             
             // Format string to create plugin style
             FormatString(sTranslation, CHAT_LINE_LENGTH);
