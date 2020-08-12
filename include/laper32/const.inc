@@ -529,10 +529,10 @@ enum ItemDef
  **/
 enum RenderingColorType     
 {
-    Color_Red,
-    Color_Green,
-    Color_Blue,
-    Color_Alpha
+    Clr_R,
+    Clr_G,
+    Clr_B,
+    Clr_A,
 };
 /**
  * @endsection
