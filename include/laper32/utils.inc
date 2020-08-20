@@ -1932,7 +1932,7 @@ inline bool UTIL_IsMapZE()
     GetCurrentMap(sMapName, sizeof(sMapName));
 
     // ZE Validation
-    if (sMapName[0] = 'z' && sMapName[1] = 'e') // ze_
+    if (sMapName[0] == 'z' && sMapName[1] == 'e') // ze_
     {
         // If so, return true
         return true;
