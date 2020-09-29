@@ -620,7 +620,7 @@ stock void CreateInstructorHint(int client,
     hint.timeout = holdtime;
     hint.icon_onscreen = icon;
     char sMessage[256];
-    VFormat(sMessage, sizeof(sMessage), caption, 8);
+    VFormat(sMessage, sizeof(sMessage), caption, 9);
     hint.Display(client, sMessage);
 
     hint.Destroy();
@@ -653,7 +653,7 @@ stock void CreateInstructorHintAll(float holdtime,
     hint.timeout = holdtime;
     hint.icon_onscreen = icon;
     char sMessage[256];
-    VFormat(sMessage, 256, caption, 7);
+    VFormat(sMessage, 256, caption, 8);
     hint.DisplayAll(sMessage);
     hint.Destroy();
 }

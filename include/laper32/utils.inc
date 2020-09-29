@@ -1942,6 +1942,33 @@ inline bool UTIL_IsMapZE()
     return false;
 }
 
+inline void UTIL_SendPanelMessage(int client, const char[] message)
+{
+    Panel panel = null;
+    panel = new Panel();
+    
+    panel.DrawText("=============================");
+    panel.DrawText("                             ");
+    panel.DrawText(text);
+    panel.DrawText("                             ");
+    panel.DrawText("=============================");
+    panel.DrawItem("OK");
+    
+    panel.Send(client, PanelHandler, 10);
+    delete panel;
+}
+
+inline void UTIL_SendPanelMessageAll(const char[] message)
+{
+    for(int i = 1; i <= MaxClients; i++)
+    {
+        if (IsPlayerExist(i, false) && !IsFakeClient(i))
+        {
+            UTIL_SendPanelMessage(i, message);
+        }
+    }
+}
+
 inline bool PlayersFilter(int entity, int contentsMask)
 {
     return ( (entity == 0) || (entity > MaxClients) );
