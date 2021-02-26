@@ -4,6 +4,17 @@
 # Languages
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=laper32&layout=compact)](https://github.com/laper32)
 
+# Preferring Languages
+* SourcePawn
+* C++
+* C
+* Python
+* C#
+* Java
+* PHP
+* JavaScript
+* ...<Arbitary language may be used in the future>
+
 # Contact me
 <!-- * <img src = "https://store.steampowered.com/favicon.ico" width="16" height="16" /> [laper32](https://www.laper32.net) -->
 * <img src = "https://store.steampowered.com/favicon.ico" width="16" height="16" /> [laper32](https://steamcommunity.com/id/laper32/)
