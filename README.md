@@ -13,7 +13,7 @@
 * Java
 * PHP
 * JavaScript
-* ...<Arbitary language may be used in the future>
+* ... __(Arbitary language may be used in the future)__
 
 # Contact me
 <!-- * <img src = "https://store.steampowered.com/favicon.ico" width="16" height="16" /> [laper32](https://www.laper32.net) -->
