@@ -11,8 +11,10 @@
 * Python
 * C#
 * Java
-* PHP
 * JavaScript
+* Golang
+* Rust
+* PHP
 * ... __(Arbitrary language may be used in the future)__
 
 # Contact me
