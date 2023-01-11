@@ -1,6 +1,3 @@
-# Github stats
-[![laper32's github stats](https://github-readme-stats.vercel.app/api?username=laper32)](https://github.com/laper32)
-
 # Languages
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=laper32&layout=compact)](https://github.com/laper32)
 
