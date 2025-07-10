@@ -1,5 +1,5 @@
 # Using languages
-[![Language uses](https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api/top-langs/?username=laper32&layout=compact)](https://github.com/laper32)
+[![Language uses](https://github-readme-stats.vercel.app/api/top-langs/?username=laper32&layout=compact)](https://github.com/laper32)
 
 # Contact me
 * <img src = "https://www.laper32.net/favicon.ico" width="16" height="16" /> [laper32](https://www.laper32.net)
