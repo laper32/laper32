@@ -3,7 +3,7 @@
   - [Rift](https://github.com/laper32/rift)
 
 # Using languages
-[![Language using](https://github-readme-stats.vercel.app/api?username=laper32)](https://github.com/laper32)
+[![Top Languages](./profile/top-langs.svg)](https://github.com/laper32)
 
 # Contact me
 * <img src = "https://www.laper32.net/favicon.ico" width="16" height="16" /> [laper32](https://www.laper32.net)
