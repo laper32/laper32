@@ -1,5 +1,9 @@
+# What I'm doing now:
+- Incremental Computation:
+  - [Rift](https://github.com/laper32/rift)
+
 # Using languages
-[![Language uses](https://github-readme-stats.vercel.app/api/top-langs/?username=laper32&layout=compact)](https://github.com/laper32)
+[![Language using](https://github-readme-stats.vercel.app/api?username=laper32)](https://github.com/laper32)
 
 # Contact me
 * <img src = "https://www.laper32.net/favicon.ico" width="16" height="16" /> [laper32](https://www.laper32.net)
