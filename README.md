@@ -1,6 +1,10 @@
 # What I'm doing now:
 - Incremental Computation:
   - [Rift](https://github.com/laper32/rift)
+- Source 2 Modding
+  - [ModSharp](https://github.com/Kxnrl/modsharp-public)
+- Distributed System
+  - Rg2(Wip)
 
 # Using languages
 [![Top Languages](./profile/top-langs.svg)](https://github.com/laper32)
