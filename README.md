@@ -4,7 +4,9 @@
 - Source 2 Modding
   - [ModSharp](https://github.com/Kxnrl/modsharp-public)
 - Distributed System
-  - Rg2(Wip)
+  - (Classified)
+- Embodied Intelligence
+  - (Classified)
 
 # Using languages
 [![Top Languages](./profile/top-langs.svg)](https://github.com/laper32)
