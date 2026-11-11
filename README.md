@@ -3,6 +3,7 @@
   - [Rift](https://github.com/laper32/rift)
 - Source 2 Modding
   - [ModSharp](https://github.com/Kxnrl/modsharp-public)
+  - [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp)
 - Distributed System
   - (Classified)
 - Embodied Intelligence
